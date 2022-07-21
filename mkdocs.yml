@@ -19,7 +19,7 @@ theme:
     - content.code.annotate
     # - content.tabs.link
     - content.tooltips
-    # - header.autohide
+    - header.autohide
     # - navigation.expand
     - navigation.indexes
     # - navigation.instant
@@ -55,6 +55,8 @@ theme:
 # Plugins
 plugins:
   - search
+  - minify:
+      minify_html: true
 
 markdown_extensions:
   - abbr
@@ -102,8 +104,8 @@ markdown_extensions:
 # Page tree
 nav:
   - '首页': index.md
-  - 'Unity':
+  - '游戏开发':
     - '物理': 
-      - '碰撞检测': unity/collision-detection.md
+      - '碰撞检测': game/collision-detection.md
   # - '网络':
 
