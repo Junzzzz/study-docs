@@ -6,10 +6,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: github.event.repository.fork == false
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python runtime
+        uses: actions/setup-python@v2
         with:
           python-version: 3.x
       - run: pip install mkdocs-material 
+      - name: Install Python dependencies
+        run: | 
+          pip install mkdocs-material
+          pip install \
+            "mkdocs-git-committers-plugin-2>=0.4.3" \
+            "mkdocs-git-revision-date-localized-plugin>=1.0" \
+            "mkdocs-minify-plugin>=0.3" \
+            "mkdocs-redirects>=1.0"
+
       - run: mkdocs gh-deploy --force
