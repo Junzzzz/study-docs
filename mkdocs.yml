@@ -116,6 +116,7 @@ nav:
       - '碰撞检测': game/physics/collision-detection.md
       - '旋转': game/physics/rotation.md
   - 'C#':
+    - 'collection': c-sharp/collection.md
     - 'yield': c-sharp/yield.md
   # - '网络':
 
