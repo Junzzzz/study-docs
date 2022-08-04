@@ -111,6 +111,7 @@ nav:
   - '首页': index.md
   - '游戏开发':
     - 'Unity': 
+      - 'AssetBundle': game/unity/assetbundle.md
       - '协程': game/unity/coroutine.md
     - '物理': 
       - '碰撞检测': game/physics/collision-detection.md
