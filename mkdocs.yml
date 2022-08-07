@@ -119,5 +119,8 @@ nav:
   - 'C#':
     - 'collection': c-sharp/collection.md
     - 'yield': c-sharp/yield.md
+  - 'GAMES课程':
+    - 'GAMES101':
+        - '第4讲课后题': games-course/games101/lecture-4-question.md
   # - '网络':
 
