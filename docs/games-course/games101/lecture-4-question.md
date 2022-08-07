@@ -23,20 +23,84 @@ n & 0 & 0 & 0 \\
 \end{bmatrix}
 \end{aligned}}}$
 
-右乘列向量 $(x,y,\frac{n+f}{2},1)$ ，可得变换后的值：
+右乘列向量 $(x,y,\frac{n+f}{2},1)$ ，可得变换后的列向量：
 
 ${\displaystyle{\begin{aligned}
-z' = \frac{(n+f)^2}{2}-nf = \frac{n^2+f^2}{2}
+(nx,ny,\frac{n^2+f^2}{2},\frac{n+f}{2})
 \end{aligned}}}$
 
-显然：
+即：
 
 ${\displaystyle{\begin{aligned}
-z' > 0 > z = \frac{n+f}{2} (f < n < 0)
+z' = \frac{\frac{n^2+f^2}{2}}{\frac{n+f}{2}} = \frac{n^2+f^2}{n+f}
 \end{aligned}}}$
 
-让我困惑的是变换后的Z坐标值居然大于0，有点不可思议，不知道是哪里理解错了
 
-有看到这里，有答案的同学请在ISSUE里发一下，感谢
+两坐标相减可得：
+
+${\displaystyle{\begin{aligned}
+z' - z = \frac{n^2+f^2}{n+f} - \frac{n+f}{2} = \frac{(n-f)^2}{2(n+f)}
+\end{aligned}}}$
+
+由于摄像机朝向Z轴 **负方向** ，所以 $f < n < 0$，得
+
+${\displaystyle{\begin{aligned}
+z' - z < 0
+\end{aligned}}}$
+
+所以更靠近 **远平面**
+
+### 原题解
+
+上面代入的是中点这个特殊值，下面试着求一下通用解。
+
+设两平面中间任意一点坐标为 $(x,y,z)$，那么$f < z < n < 0$
+
+同上述解法可得变换后的坐标 $z'$ 为：
+
+${\displaystyle{\begin{aligned}
+z' = \frac{(n+f)z - nf}{z}
+\end{aligned}}}$
+
+与原坐标相减得：
+
+${\displaystyle{\begin{aligned}
+z' - z = \frac{(n+f)z - nf}{z} - z = (n+f) - (\frac{nf}{z} + z)
+\end{aligned}}}$
+
+令 $t = nf$，则：
+
+${\displaystyle{\begin{aligned}
+z' - z = (n + \frac{t}{n}) - (z + \frac{t}{z})
+\end{aligned}}}$
+
+令 ${\displaystyle{\begin{aligned}f(x)=x + \frac{t}{x}\end{aligned}}}$，则 $x \in (-\infty,-\sqrt{t})$ 时，单调递增，$x \in (-\sqrt{t},0)$ 时，单调递减。
+
+令
+${\displaystyle{\begin{aligned}
+f = n - k (k > 0),
+g(n)=n - \left(-\sqrt{n(n-k)}\right)
+\end{aligned}}}$，对 $g(n)$ 求导得：
+
+${\displaystyle{\begin{aligned}
+g'(n) = \frac{n - \frac{1}{2}k}{\sqrt{n^2-kn}} + 1 < 0 
+\end{aligned}}}$ （可以接着求导来证）
+
+因此 $g(n)$ 在 $n < 0$ 时单调递减，且 $g(n) > 0$
+
+则：$n > -\sqrt{n(n-k)} = -\sqrt{t}$
+
+同理得：$f = n - k > -\sqrt{n(n-k)} = -\sqrt{t}$
+
+所以：
+${\displaystyle{\begin{aligned}
+z' - z = f(n) - f(z) < 0
+\end{aligned}}}$
+
+所以更靠近 **远平面**
+
+!!! warning "警告"
+
+    虽然试着证明了一下，但不保证证明过程正确性，不过大致应该没问题，如果看到这里的同学发现有误，可以发下 `Issue`。
 
 [^1]: [BILI - 第4讲视频](https://www.bilibili.com/video/BV1X7411F744?p=4)
