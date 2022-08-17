@@ -2,52 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://junzzzz.github.io/study-docs/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/c-sharp/collection/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/c-sharp/yield/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/game/physics/collision-detection/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/game/physics/rotation/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/game/unity/assetbundle/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/game/unity/coroutine/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/games-course/games101/lecture-4-question/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/games-course/games101/summary-1-5/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://junzzzz.github.io/study-docs/games-course/games101/summary-5-7/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <lastmod>2022-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://junzzzz.github.io/study-docs/games-course/games101/summary-7-10/</loc>
+         <lastmod>2022-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
