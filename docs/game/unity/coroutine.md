@@ -32,20 +32,38 @@
 再贴一下示例:
 
 ```c#
-    private void FixedUpdate()
-    {
-        StartCoroutine(nameof(YourCoroutine));
-    }
+private void Start()
+{
+    // 推荐
+    StartCoroutine(YourCoroutine());
+    StartCoroutine(nameof(YourCoroutine));
+}
 
-    private IEnumerable<YieldInstruction> YourCoroutine()
-    {
-        yield return new WaitForSeconds(1);
-        
-        // ... 
-    }
+// 使用字符串方式调用不能让 IEnumerator 带泛型（虽然一般也用不到）
+private IEnumerator YourCoroutine()
+{
+    yield return new WaitForSeconds(1);
+    
+    // ... 
+}
 ```
 
-作用就是每次`FixedUpdate`后1秒执行...的部分，这里建议使用 `nameof()` 方法，这样可以配合一些IDE的重命名功能，方便修改方法名
+作用就是每次 `FixedUpdate` 后1秒执行...的部分，这里建议使用上面的方法，相比使用方法名字符串调用方法开销要更低一点，并且可以带更多参数（方法名调用只能带一个参数）。
+
+用方法名的字符串调用的话唯一一点好处大概就是可以用 `StopCoroutine("YourCoroutine")` 这种用字符串停止的方式，否则需要保存协程信息，才能停止协程。
+
+```c#
+private void Start()
+{
+    // 第一种关闭方式
+    Coroutine c = StartCoroutine(YourCoroutine());
+    StopCoroutine(c);
+
+    // 第二种关闭方式
+    StartCoroutine(nameof(YourCoroutine));
+    StopCoroutine(nameof(YourCoroutine));
+}
+```
 
 !!! summary "后记"
 
