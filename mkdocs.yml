@@ -130,6 +130,6 @@ nav:
         - '课程 7-10 总结': games-course/games101/summary-7-10.md
   - '性能优化 & BUG案例':
     - '集合使用优化' :  optimization/collection.md
-    # - '对象检查优化' :  optimization/equals.md
+    - '对象检查优化' :  optimization/unity-null-object-check.md
   # - '网络':
 
