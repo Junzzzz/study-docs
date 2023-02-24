@@ -113,20 +113,23 @@ nav:
     - 'Unity': 
       - 'AssetBundle': game/unity/assetbundle.md
       - '协程': game/unity/coroutine.md
-      # - 'LayerMask': game/unity/layer-mask.md
+      - 'LayerMask': game/unity/layer-mask.md
+
     - '物理': 
       - '碰撞检测': game/physics/collision-detection.md
       - '旋转': game/physics/rotation.md
   - 'C#':
     - 'collection': c-sharp/collection.md
     - 'yield': c-sharp/yield.md
-    - 'in out ref': c-sharp/in-out-ref.md
+    # - 'in out ref': c-sharp/in-out-ref.md
   - 'GAMES课程':
     - 'GAMES101':
         - '第4讲课后题': games-course/games101/lecture-4-question.md
         - '课程 1-5 总结': games-course/games101/summary-1-5.md
         - '课程 5-7 总结': games-course/games101/summary-5-7.md
         - '课程 7-10 总结': games-course/games101/summary-7-10.md
-
+  - '性能优化 & BUG案例':
+    - '集合使用优化' :  optimization/collection.md
+    # - '对象检查优化' :  optimization/equals.md
   # - '网络':
 
