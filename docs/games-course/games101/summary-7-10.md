@@ -33,6 +33,8 @@ L_s=k_s\frac{I}{r^2}\max(0,n \cdot h)^p
 
 值得注意的还有指数 $p$ ，这个值主要用于让函数值快速收缩，使高光区域不会太大
 
+![cosine-power-plots](../../assets/images/cosine-power-plots.png)
+
 ### Ambient（环境光）
 
 ${\displaystyle{\begin{aligned}
@@ -48,7 +50,5 @@ L_a=k_aI_a
 ${\displaystyle{\begin{aligned}
 L=L_a+L_d+L_s=k_aI_a+k_d\frac{I}{r^2}\max(0,n \cdot l)+k_s\frac{I}{r^2}\max(0,n \cdot h)^p
 \end{aligned}}}$
-
-![half-vector](../../assets/images/cosine-power-plots.png)
 
 [^1]: [Lambert's cosine law](https://en.wikipedia.org/wiki/Lambert%27s_cosine_law)

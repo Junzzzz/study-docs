@@ -29,10 +29,10 @@ yield break;
 
  - 返回类型必须为下列类型之一：
 
-    * IAsyncEnumerable<T>
-    * IEnumerable<T>
+    * IAsyncEnumerable\<T\>
+    * IEnumerable\<T\>
     * IEnumerable
-    * IEnumerator<T>
+    * IEnumerator\<T\>
     * IEnumerator
 
  - 声明不能有任何 in、ref 或 out 参数。

@@ -31,7 +31,25 @@ $R_z(\theta_z) =  \begin{bmatrix} \cos \theta_z & -\sin \theta_z & 0 \\ \sin \th
 则其旋转矩阵为：
 
 ${\displaystyle{\begin{aligned}
-R=R_{z}(\alpha)\,R_{y}(\beta)\,R_{x}(\gamma)&={\overset {\text{yaw}}{\begin{bmatrix}\cos \alpha &-\sin \alpha &0\\\sin \alpha &\cos \alpha &0\\0&0&1\\\end{bmatrix}}}{\overset {\text{pitch}}{\begin{bmatrix}\cos \beta &0&\sin \beta \\0&1&0\\-\sin \beta &0&\cos \beta \\\end{bmatrix}}}{\overset {\text{roll}}{\begin{bmatrix}1&0&0\\0&\cos \gamma &-\sin \gamma \\0&\sin \gamma &\cos \gamma \\\end{bmatrix}}}\\&={\begin{bmatrix}\cos \alpha \cos \beta &\cos \alpha \sin \beta \sin \gamma -\sin \alpha \cos \gamma &\cos \alpha \sin \beta \cos \gamma +\sin \alpha \sin \gamma \\\sin \alpha \cos \beta &\sin \alpha \sin \beta \sin \gamma +\cos \alpha \cos \gamma &\sin \alpha \sin \beta \cos \gamma -\cos \alpha \sin \gamma \\-\sin \beta &\cos \beta \sin \gamma &\cos \beta \cos \gamma \\
+R &= R_{z}(\alpha)\,R_{y}(\beta)\,R_{x}(\gamma) \\ 
+&={\overset {\text{yaw}}{\begin{bmatrix}
+\cos \alpha &-\sin \alpha &0\\
+\sin \alpha &\cos \alpha &0\\
+0&0&1\\
+\end{bmatrix}}}
+{\overset {\text{pitch}}{\begin{bmatrix}
+\cos \beta &0&\sin \beta \\
+0&1&0\\
+-\sin \beta &0&\cos \beta \\
+\end{bmatrix}}}
+{\overset {\text{roll}}{\begin{bmatrix}
+1&0&0\\
+0&\cos \gamma &-\sin \gamma \\
+0&\sin \gamma &\cos \gamma \\
+\end{bmatrix}}}\\
+&={\begin{bmatrix}\cos \alpha \cos \beta &\cos \alpha \sin \beta \sin \gamma -\sin \alpha \cos \gamma &\cos \alpha \sin \beta \cos \gamma +\sin \alpha \sin \gamma \\
+\sin \alpha \cos \beta &\sin \alpha \sin \beta \sin \gamma +\cos \alpha \cos \gamma &\sin \alpha \sin \beta \cos \gamma -\cos \alpha \sin \gamma \\
+-\sin \beta &\cos \beta \sin \gamma &\cos \beta \cos \gamma \\
 \end{bmatrix}}
 \end{aligned}}}$
 
@@ -49,7 +67,7 @@ R=R_{z}(\alpha)\,R_{y}(\beta)\,R_{x}(\gamma)&={\overset {\text{yaw}}{\begin{bmat
 
 若任意向量 $\vec{v}$ 沿着以 **单位向量** 定义的旋转轴 $\vec{u}$ 旋转 $\theta$ 角度之后的 $\vec{v}'$ 
 
-令 $a = \cos \frac {\theta}{2}$，$b = \sin \frac{\theta}{2} \cdot \vec{u_x}$，$c = \sin \frac{\theta}{2} \cdot \vec{u_y}$，$d = \sin \frac{\theta}{2} \cdot \vec{u_z}$，$v=[0, \vec{v}]$，$v'=[0,\vec{v}']$
+令 $a = \cos \frac{\theta}{2}$，$b = \sin \frac{\theta}{2} \cdot \vec{u_x}$，$c = \sin \frac{\theta}{2} \cdot \vec{u_y}$，$d = \sin \frac{\theta}{2} \cdot \vec{u_z}$，$v=[0, \vec{v}]$，$v'=[0,\vec{v}']$
 
 则四元数 $q = a + bi + cj + dk$ （ $a$ 为实部，$i,j,k$ 为虚部）
 
