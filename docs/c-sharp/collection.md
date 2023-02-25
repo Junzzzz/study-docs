@@ -29,10 +29,139 @@
 3. 存放在其中的键对象属性不能改变（主要是会影响哈希值的属性），否则可能会无法检索到对应的值。
 
 
-!!! tip "Hash"
+!!! tip "HashCode"
 
     哈希值代表了一个对象的特征值，两个不同的对象可能会产生相同的特征值。
 
+### 源码浅析
+
+这里只取部分代码作简要分析
+
+[Dictionary 源代码 - Insert](https://referencesource.microsoft.com/#mscorlib/system/collections/generic/dictionary.cs,fd1acf96113fbda9)
+
+```c#
+private struct Entry {
+   public int hashCode; // Lower 31 bits of hash code, -1 if unused
+   public int next;     // Index of next entry, -1 if last
+   public TKey key;     // Key of entry
+   public TValue value; // Value of entry
+}
+
+private int[] buckets;
+private Entry[] entries;
+
+private void Insert(TKey key, TValue value, bool add) {
+
+    if( key == null ) {
+        ThrowHelper.ThrowArgumentNullException(ExceptionArgument.key);
+    }
+
+    // 初始化数组buckets和entries 会取素数作为size 这里最小为3
+    if (buckets == null) Initialize(0);
+
+    // 取Hash值 符号位 置0
+    int hashCode = comparer.GetHashCode(key) & 0x7FFFFFFF;
+
+    // 取余数得到桶位置
+    int targetBucket = hashCode % buckets.Length;
+
+#if FEATURE_RANDOMIZED_STRING_HASHING
+    // 记录碰撞次数
+    int collisionCount = 0;
+#endif
+
+    // 检查是否已经存在键值对，有的话直接写入
+    for (int i = buckets[targetBucket]; i >= 0; i = entries[i].next) {
+        if (entries[i].hashCode == hashCode && comparer.Equals(entries[i].key, key)) {
+            if (add) { 
+                ThrowHelper.ThrowArgumentException(ExceptionResource.Argument_AddingDuplicate);
+            }
+            entries[i].value = value;
+            version++;
+            return;
+        }
+
+#if FEATURE_RANDOMIZED_STRING_HASHING
+        // 发生碰撞
+        collisionCount++;
+#endif
+    }
+    int index;
+
+    // 是否存在空闲位置（执行删除操作后的空闲位置）
+    if (freeCount > 0) {
+        // 取空闲位置index
+        index = freeList;
+        freeList = entries[index].next;
+        freeCount--;
+    }
+    else {
+        if (count == entries.Length)
+        {
+            // 数组满，扩容
+            Resize();
+            targetBucket = hashCode % buckets.Length;
+        }
+        index = count;
+        count++;
+    }
+
+    // 插入数据
+    entries[index].hashCode = hashCode;
+    // 存在冲突的话会指向冲突位置
+    entries[index].next = buckets[targetBucket];
+    entries[index].key = key;
+    entries[index].value = value;
+    // 桶中记录位置
+    buckets[targetBucket] = index;
+    version++;
+
+    // 碰撞次数过多会触发扩容 HashHelpers.HashCollisionThreshold = 100
+#if FEATURE_RANDOMIZED_STRING_HASHING
+
+#if FEATURE_CORECLR
+    // In case we hit the collision threshold we'll need to switch to the comparer which is using randomized string hashing
+    // in this case will be EqualityComparer<string>.Default.
+    // Note, randomized string hashing is turned on by default on coreclr so EqualityComparer<string>.Default will 
+    // be using randomized string hashing
+
+    if (collisionCount > HashHelpers.HashCollisionThreshold && comparer == NonRandomizedStringEqualityComparer.Default) 
+    {
+        comparer = (IEqualityComparer<TKey>) EqualityComparer<string>.Default;
+        Resize(entries.Length, true);
+    }
+#else
+    if(collisionCount > HashHelpers.HashCollisionThreshold && HashHelpers.IsWellKnownEqualityComparer(comparer)) 
+    {
+        comparer = (IEqualityComparer<TKey>) HashHelpers.GetRandomizedEqualityComparer(comparer);
+        Resize(entries.Length, true);
+    }
+#endif // FEATURE_CORECLR
+
+#endif
+
+}
+```
+#### 个人评价
+
+区别于 `Java` 中的 `HashMap`，解决冲突虽然用了类似拉链法的操作，但这里的存储形式是全数组形式的，并没有使用链表。
+
+相比之下 `Entry` 是 `struct` 值类型，纯数组形式内存空间一次性分配，因此对于内存管理会更友好一些，垃圾回收器回收起来嘎嘎爽。
+
+但是缺点也很明显，这样的结构很容易产生冲突，虽然有冲突扩容机制，但 **个人感觉** 不太适合存储大量数据，查找性能不如Java的HashMap（有对链表进行红黑树转换），观点如下：
+
+1. HashCode与素数取余（需要除法运算）不如HashMap中位运算取余快
+
+    （素数取余虽然可以让数据分布更分散一些，但是Java中使用异或 `^` 叠加高位数据和低位数据来处理哈希值也能得到类似的效果）
+
+2. 冲突时查找慢，Java有红黑树转换，最坏情况也是O(logN)
+3. 内存空间浪费，一次性分配内存虽然爽，但是同样也很浪费
+
+!!! tip 
+
+    Java中使用 `HashCode & (Length - 1)` 进行取余，不过只有在 `Length` 是2的倍数情况下才能使用，因此扩容也是按照2的倍数进行扩容的
+
+对于 `Dictionary` 来讲，大部分的使用场景更偏向于查找，因此像Java中对查找做了更多优化（虽然有代价），我认为这样更合理些
 
 ## Hashtable
 

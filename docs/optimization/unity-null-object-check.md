@@ -2,7 +2,7 @@
 
 ## 前言
 
-在使用 `Rider` 写null检查时 `gameObject == null` 中的等号换了一种颜色显示，点开后才知道Unity引擎重载了 `==` 的方法。
+在使用 `Rider` 写null检查时 `gameObject == null` 中的等号换了一种颜色显示，点开后才知道Unity引擎重写了 `==` 的方法。
 
 当时没有在意，直到在 `Update()` 方法内写这段语句时出现了提示： `Comparison to 'null' is expensive` 
 
@@ -59,7 +59,7 @@ private IntPtr GetCachedPtr() => this.m_CachedPtr;
 
 ### 第一种情况
 
-需要得到这种效果就没有办法避免去调用Unity自定义的重载方法了，但是一般情况下也不会在高频环境中去检查一个对象是否被销毁。
+需要得到这种效果就没有办法避免去调用Unity自定义的方法了，但是一般情况下也不会在高频环境中去检查一个对象是否被销毁。
 
 我们碰到的往往是第二种情况。
 
