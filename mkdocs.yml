@@ -114,7 +114,8 @@ nav:
       - 'AssetBundle': game/unity/assetbundle.md
       - '协程': game/unity/coroutine.md
       - 'LayerMask': game/unity/layer-mask.md
-
+      - '注意点': 
+        - '序列化字段置空': game/unity/tips/set-serieralized-field-null.md
     - '物理': 
       - '碰撞检测': game/physics/collision-detection.md
       - '旋转': game/physics/rotation.md
@@ -128,7 +129,7 @@ nav:
         - '课程 1-5 总结': games-course/games101/summary-1-5.md
         - '课程 5-7 总结': games-course/games101/summary-5-7.md
         - '课程 7-10 总结': games-course/games101/summary-7-10.md
-  - '性能优化 & BUG案例':
+  - '性能优化':
     - '集合使用优化' :  optimization/collection.md
     - '对象检查优化' :  optimization/unity-null-object-check.md
   # - '网络':
