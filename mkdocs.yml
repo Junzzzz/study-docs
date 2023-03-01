@@ -116,6 +116,9 @@ nav:
       - 'LayerMask': game/unity/layer-mask.md
       - '注意点': 
         - '序列化字段置空': game/unity/tips/set-serieralized-field-null.md
+    - '热更新': 
+      - '概述': game/hotfix/overview.md
+      - 'xLua': game/hotfix/xlua.md
     - '物理': 
       - '碰撞检测': game/physics/collision-detection.md
       - '旋转': game/physics/rotation.md
